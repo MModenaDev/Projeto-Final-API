@@ -81,8 +81,9 @@ app.use(cors({
 
 // ROUTES MIDDLEWARE STARTS HERE:
 
-// app.use('/', require('./routes/auth'));
+app.use('/', require('./routes/auth'));
 
+app.use('/api', require('./routes/house'));
 
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
