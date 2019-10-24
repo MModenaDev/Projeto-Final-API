@@ -69,7 +69,7 @@ app.use(cors({
 }));
 
 app.use('/auth', require('./routes/auth'));
-
+app.use('/api', require('./routes/house'));
 
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
