@@ -11,7 +11,7 @@ const cors = require('cors');
 
 const session = require('express-session');
 const passport = require('passport');
-const MongoStore = require('connect-mongo')(session)
+const MongoStore = require('connect-mongo')(session);
 
 require('./configs/passport');
 
@@ -41,8 +41,6 @@ app.use(cookieParser());
 
 // Express View engine setup
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ADD SESSION SETTINGS HERE:
