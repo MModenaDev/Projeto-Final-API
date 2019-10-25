@@ -123,12 +123,14 @@ router.get('/loggedin', (req, res, next) => {
   });
 });
 
-app.get('/facebook', passport.authenticate('facebook'));
+//passar as rotas corretas de sucesso e de falha
+ 
+router.get('/facebook', passport.authenticate('facebook', {scope: ["email"]} ));
 
-app.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
 
-app.get('/google',passport.authenticate('google'));
+router.get('/google',passport.authenticate('google', {scope: ["profile", "email"]}));
 
-app.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
+router.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
 module.exports = router;
