@@ -1,5 +1,5 @@
 const express = require('express');
-const authRoutes = express.Router();
+const router = express.Router();
 
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 
-authRoutes.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   console.log(email, password);
@@ -72,7 +72,7 @@ authRoutes.post('/signup', (req, res, next) => {
   });
 });
 
-authRoutes.post('/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {
     if (err) {
       res.status(500).json({
@@ -103,7 +103,7 @@ authRoutes.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-authRoutes.get('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
   // req.logout() is defined by passport
   req.logout();
   res.status(200).json({
@@ -112,7 +112,7 @@ authRoutes.get('/logout', (req, res, next) => {
 });
 
 
-authRoutes.get('/loggedin', (req, res, next) => {
+router.get('/loggedin', (req, res, next) => {
   // req.isAuthenticated() is defined by passport
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
@@ -123,4 +123,12 @@ authRoutes.get('/loggedin', (req, res, next) => {
   });
 });
 
-module.exports = authRoutes;
+app.get('/facebook', passport.authenticate('facebook'));
+
+app.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+
+app.get('/google',passport.authenticate('google'));
+
+app.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
+
+module.exports = router;

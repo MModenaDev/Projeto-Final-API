@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 const bcrypt = require('bcryptjs'); // !!!
 const passport = require('passport');
 
@@ -41,3 +43,27 @@ passport.use(new LocalStrategy({usernameField: "email", passwordField: "password
     next(null, foundUser);
   });
 }));
+
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:5000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, next) {
+    User.findOrCreate({ 'facebook.id': profile.id }, function (err, user) {
+      return next(err, user);
+    });
+  }
+));
+
+passport.use(new GoogleStrategy({
+    consumerKey: process.env.GOOGLE_CONSUMER_KEY,
+    consumerSecret: process.env.GOOGLE_CONSUMER_SECRET,
+    callbackURL: "http://localhost:5000/auth/google/callback"
+  },
+  function(token, tokenSecret, profile, next) {
+      User.findOrCreate({ 'google.id': profile.id }, function (err, user) {
+        return next(err, user);
+      });
+  }
+));
