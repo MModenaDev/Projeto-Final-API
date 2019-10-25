@@ -123,6 +123,8 @@ router.get('/loggedin', (req, res, next) => {
   });
 });
 
+//passar as rotas corretas de sucesso e de falha
+ 
 app.get('/facebook', passport.authenticate('facebook'));
 
 app.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
