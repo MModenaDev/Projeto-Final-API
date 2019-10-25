@@ -122,8 +122,6 @@ router.get('/loggedin', (req, res, next) => {
     message: 'Unauthorized'
   });
 });
-
-//passar as rotas corretas de sucesso e de falha
  
 router.get('/facebook', passport.authenticate('facebook', {scope: ["email"]} ));
 
