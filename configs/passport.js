@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const bcrypt = require('bcryptjs'); // !!!
 const passport = require('passport');
 
@@ -47,22 +47,23 @@ passport.use(new LocalStrategy({usernameField: "email", passwordField: "password
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:5000/auth/facebook/callback"
+    callbackURL: "http://localhost:5000/api/auth/facebook/callback",
+    profileFields: ['emails'],
   },
   function(accessToken, refreshToken, profile, next) {
-    User.findOrCreate({ 'facebook.id': profile.id }, function (err, user) {
+    User.findOrCreate({ 'facebook.id': profile.id }, { 'email': profile.emails[0].value}, function (err, user) {
       return next(err, user);
     });
   }
 ));
 
 passport.use(new GoogleStrategy({
-    consumerKey: process.env.GOOGLE_CONSUMER_KEY,
-    consumerSecret: process.env.GOOGLE_CONSUMER_SECRET,
-    callbackURL: "http://localhost:5000/auth/google/callback"
+    clientID: process.env.GOOGLE_CONSUMER_KEY,
+    clientSecret: process.env.GOOGLE_CONSUMER_SECRET,
+    callbackURL: "http://localhost:5000/api/auth/google/callback",
   },
   function(token, tokenSecret, profile, next) {
-      User.findOrCreate({ 'google.id': profile.id }, function (err, user) {
+      User.findOrCreate({ 'google.id': profile.id }, { 'email': profile.emails[0].value}, function (err, user) {
         return next(err, user);
       });
   }
