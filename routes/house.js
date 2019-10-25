@@ -71,7 +71,7 @@ router.post('/new', (req, res, next) => {
             dateBegin.setMinutes(0);
             dateBegin.setSeconds(0);
       
-            let dateEnd = new Date(2020,11,31,0,0,0);
+            let dateEnd = new Date(2019,09,31,0,0,0);
       
             let dateMid = new Date();
             dateMid.setHours(0);
