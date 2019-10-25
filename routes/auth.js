@@ -123,4 +123,12 @@ router.get('/loggedin', (req, res, next) => {
   });
 });
 
+app.get('/facebook', passport.authenticate('facebook'));
+
+app.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+
+app.get('/google',passport.authenticate('google'));
+
+app.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
+
 module.exports = router;
