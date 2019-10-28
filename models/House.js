@@ -17,12 +17,13 @@ const houseSchema = new Schema({
   garage: Boolean,
   numberGarage: Number,
   plan: String,
-  images: Array,
+  images: String,
   location: { type: { type: String }, coordinates: [Number] } // coordinates [longitude, latitude]
 },
 {
   timestamps: true
 });
+  houseSchema.index({ location: '2dsphere' });
 
 const House = mongoose.model('House', houseSchema);
 module.exports = House;
