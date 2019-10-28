@@ -4,10 +4,11 @@ const House = require('../models/House')
 const Slots = require('../models/Slots')
 const axios = require('axios')
 const mongoose = require('mongoose')
+const uploadCloud = require('../configs/cloudinary');
 
 // ==================================================================================================================
 // POST house / POST slots of this house
-router.post('/new', (req, res, next) => {
+router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   const { name, 
     street, 
     streetNumber,
@@ -24,6 +25,8 @@ router.post('/new', (req, res, next) => {
     plan,
     images,
   } = req.body;
+
+  // const { images } = req.file.url;
 
   let adressInsert = street+', '+streetNumber+', '+complement+', '+city+', '+state+', '+country;
   
@@ -71,7 +74,7 @@ router.post('/new', (req, res, next) => {
             dateBegin.setMinutes(0);
             dateBegin.setSeconds(0);
       
-            let dateEnd = new Date(2019,09,31,0,0,0);
+            let dateEnd = new Date(2019,10,05,0,0,0);
       
             let dateMid = new Date();
             dateMid.setHours(0);
