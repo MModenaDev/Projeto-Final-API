@@ -16,7 +16,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     city,
     state,
     country,
-    maxBooking,
+    maxBooking, 
     description,
     numberRooms,
     numberBath,
@@ -35,7 +35,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
   const stateAdj = state.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   const countryAdj = country.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-  let adress = street+'+'+streetNumber+'+'+city+'+'+state+'+'+country;
+  let adress = streetAdj+'+'+streetNumber+'+'+cityAdj+'+'+stateAdj+'+'+countryAdj;
   const adressValue = adress.trim().replace(/ /g, '+');
 
   const adressAPI = axios.create({baseURL: `https://maps.googleapis.com/maps/api/geocode/json?address=${adressValue}&key=${process.env.GOOGLE_KEY}`})
@@ -48,7 +48,8 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
         type: 'Point',
         coordinates: [lng, lat]
         };
-
+        console.log("a");
+        
         House.create({
           name,
           adress: adressInsert,
@@ -100,7 +101,11 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
           })
           .catch(err => res.json(err))
     })
-    .catch((err) => res.json(err))
+    .catch((err) => {
+      console.log("b");
+      
+      res.json(err)
+    })
 })
 
 // ==================================================================================================================
@@ -209,6 +214,7 @@ router.put('/:id', (req, res, next) => {
         .then(house => res.json(house))
         .catch(err => res.json(err))
     })
+    .catch((err) => res.json(err))
 })
 
 // ==================================================================================================================
