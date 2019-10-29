@@ -125,10 +125,10 @@ router.get('/loggedin', (req, res, next) => {
  
 router.get('/facebook', passport.authenticate('facebook', {scope: ["email"]} ));
 
-router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: 'http://localhost:3000', failureRedirect: 'http://localhost:3000' }));
 
 router.get('/google',passport.authenticate('google', {scope: ["profile", "email"]}));
 
-router.get('/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
+router.get('/google/callback', passport.authenticate('google',  { successRedirect: 'http://localhost:3000', failureRedirect: 'http://localhost:3000' }));
 
 module.exports = router;
