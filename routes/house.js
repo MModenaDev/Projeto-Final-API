@@ -176,7 +176,7 @@ router.put('/:id', (req, res, next) => {
   const stateAdj = state.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   const countryAdj = country.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-  let adress = street+'+'+streetNumber+'+'+city+'+'+state+'+'+country;
+  let adress = streetAdj+'+'+streetNumber+'+'+cityAdj+'+'+stateAdj+'+'+countryAdj;
   const adressValue = adress.trim().replace(/ /g, '+');
   
   const adressAPI = axios.create({baseURL: `https://maps.googleapis.com/maps/api/geocode/json?address=${adressValue}&key=${process.env.GOOGLE_KEY}`})
