@@ -71,6 +71,7 @@ app.use('/api/house', require('./routes/house'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/booking', require('./routes/booking'));
 app.use('/api/review', require('./routes/review'));
+app.use('/api', require('./routes/imageUpload'));
 
 app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");

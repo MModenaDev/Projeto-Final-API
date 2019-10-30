@@ -17,7 +17,7 @@ const houseSchema = new Schema({
   garage: Boolean,
   numberGarage: Number,
   plan: String,
-  images: String,
+  images: Array,
   location: { type: { type: String }, coordinates: [Number] } // coordinates [longitude, latitude]
 },
 {
