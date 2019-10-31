@@ -105,14 +105,8 @@ router.put('/:houseId/unbookuser', (req, res, next) => {
 router.get('/search/:houseId', (req, res, next) => {
   const { houseId } = req.params;
   const { dateStart, dateFinish } = req.query;
-  console.log("a");
-  console.log(dateStart);
-  console.log(dateFinish);
-  
-  
   
   if ((dateStart === undefined && dateFinish === undefined) || (dateStart === null && dateFinish === null) || (dateStart === '' && dateFinish === '')) {
-    console.log("b");
     Slots.find({ house: houseId })
     .then (allSlots => {res.json(allSlots)})
     .catch(err => res.json(err))
@@ -120,8 +114,6 @@ router.get('/search/:houseId', (req, res, next) => {
   } else {
     let dateStartAdj = new Date(dateStart)
     let dateFinishAdj = new Date(dateFinish)
-    console.log("c");
-    
     
     Slots.find({ house: houseId })
       .then (allSlots => {
