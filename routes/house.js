@@ -4,11 +4,10 @@ const House = require('../models/House')
 const Slots = require('../models/Slots')
 const axios = require('axios')
 const mongoose = require('mongoose')
-const uploadCloud = require('../configs/cloudinary');
 
 // ==================================================================================================================
 // POST house / POST slots of this house
-router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
+router.post('/new', (req, res, next) => {
   const { name, 
     street, 
     streetNumber,
@@ -48,7 +47,6 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
         type: 'Point',
         coordinates: [lng, lat]
         };
-        console.log("a");
         
         House.create({
           name,
@@ -75,7 +73,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
             dateBegin.setMinutes(0);
             dateBegin.setSeconds(0);
       
-            let dateEnd = new Date(2019,10,05,0,0,0);
+            let dateEnd = new Date(2019,11,31,0,0,0);
       
             let dateMid = new Date();
             dateMid.setHours(0);
@@ -101,9 +99,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
           })
           .catch(err => res.json(err))
     })
-    .catch((err) => {
-      console.log("b");
-      
+    .catch((err) => {      
       res.json(err)
     })
 })
