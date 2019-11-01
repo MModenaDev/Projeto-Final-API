@@ -108,14 +108,17 @@ router.get('/search/:houseId', (req, res, next) => {
     .catch(err => res.json(err))
 
   } else {
-    let dateStartAdj = new Date(dateStart)
-    let dateFinishAdj = new Date(dateFinish)
+    let dateStartAdj = new Date(dateStart+"GMT-0300")
+    let dateFinishAdj = new Date(dateFinish+"GMT-0300")
+    console.log(dateFinishAdj);
+    
     
     Slots.find({ house: houseId }).populate('house')
       .then (allSlots => {
         let slotsFilter = allSlots.filter(slot => {        
           let dateStartSlotAdj = new Date(slot.dateStart)
           let dateFinishSlotAdj = new Date(slot.dateFinish)
+          
           return (dateStartSlotAdj >= dateStartAdj && dateFinishSlotAdj <= dateFinishAdj)
         })
         res.json(slotsFilter)
