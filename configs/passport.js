@@ -47,7 +47,7 @@ passport.use(new LocalStrategy({usernameField: "email", passwordField: "password
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "https://wander-ironhack.herokuapp.comapi/auth/facebook/callback",
+    callbackURL: "https://wander-ironhack.herokuapp.com/api/auth/facebook/callback",
     profileFields: ['emails'],
   },
   function(accessToken, refreshToken, profile, next) {
@@ -60,7 +60,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CONSUMER_KEY,
     clientSecret: process.env.GOOGLE_CONSUMER_SECRET,
-    callbackURL: "https://wander-ironhack.herokuapp.comapi/auth/google/callback",
+    callbackURL: "https://wander-ironhack.herokuapp.com/api/auth/google/callback",
   },
   function(token, tokenSecret, profile, next) {
       User.findOrCreate({ 'google.id': profile.id }, { 'email': profile.emails[0].value}, function (err, user) {

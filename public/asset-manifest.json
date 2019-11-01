@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9d6468ff.chunk.css",
+    "main.js": "/static/js/main.133cf0ee.chunk.js",
+    "main.js.map": "/static/js/main.133cf0ee.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f4b5d6c4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f4b5d6c4.js.map",
+    "static/css/2.e8e9493a.chunk.css": "/static/css/2.e8e9493a.chunk.css",
+    "static/js/2.cf97cc36.chunk.js": "/static/js/2.cf97cc36.chunk.js",
+    "static/js/2.cf97cc36.chunk.js.map": "/static/js/2.cf97cc36.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.0ff69cb1dfcbaef97c97e50306a9a17f.js": "/precache-manifest.0ff69cb1dfcbaef97c97e50306a9a17f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.e8e9493a.chunk.css.map": "/static/css/2.e8e9493a.chunk.css.map",
+    "static/css/main.9d6468ff.chunk.css.map": "/static/css/main.9d6468ff.chunk.css.map",
+    "static/media/logoorange.svg": "/static/media/logoorange.4a21a92b.svg",
+    "static/media/logoorange1.svg": "/static/media/logoorange1.928d70de.svg",
+    "static/media/logowhite.svg": "/static/media/logowhite.dcfe2440.svg",
+    "static/media/logowhite1.svg": "/static/media/logowhite1.9da80f79.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f4b5d6c4.js",
+    "static/css/2.e8e9493a.chunk.css",
+    "static/js/2.cf97cc36.chunk.js",
+    "static/css/main.9d6468ff.chunk.css",
+    "static/js/main.133cf0ee.chunk.js"
+  ]
+}

@@ -125,10 +125,10 @@ router.get('/loggedin', (req, res, next) => {
  
 router.get('/facebook', passport.authenticate('facebook', {scope: ["email"]} ));
 
-router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: 'https://wander-ironhack.herokuapp.comsignup', failureRedirect: 'https://wander-ironhack.herokuapp.com' }));
+router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: 'https://wander-ironhack.herokuapp.com/signup', failureRedirect: 'https://wander-ironhack.herokuapp.com' }));
 
 router.get('/google',passport.authenticate('google', {scope: ["profile", "email"]}));
 
-router.get('/google/callback', passport.authenticate('google',  { successRedirect: 'https://wander-ironhack.herokuapp.comsignup', failureRedirect: 'https://wander-ironhack.herokuapp.com' }));
+router.get('/google/callback', passport.authenticate('google',  { successRedirect: 'https://wander-ironhack.herokuapp.com/signup', failureRedirect: 'https://wander-ironhack.herokuapp.com' }));
 
 module.exports = router;
