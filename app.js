@@ -61,10 +61,10 @@ app.use(passport.session());
 // default value for title local
 app.locals.title = 'Final Project';
 
-app.use(cors({
-  credentials: true,
-  origin: ['https://https://projfinal-dev.netlify.com/'] // <== this will be the URL of our React app (it will be running on port 3000)
-}));
+// app.use(cors({
+//   credentials: true,
+//   origin: ['https://https://projfinal-dev.netlify.com/'] // <== this will be the URL of our React app (it will be running on port 3000)
+// }));
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/house', require('./routes/house'));
