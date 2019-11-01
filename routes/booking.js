@@ -42,9 +42,7 @@ router.put('/:houseId/bookuser', (req, res, next) => {
           } else {
 
             Promise.all(responseArr)
-              .then(responses => {
-                console.log(responses);
-                
+              .then(responses => {               
                 res.json(responses)})
               .catch(err => res.json(err))  
           }
@@ -85,12 +83,10 @@ router.put('/:houseId/unbookuser', (req, res, next) => {
           
           if (countLoop < slotsFilter.length) {
             countLoop += 1;
-            console.log(countLoop);              
           } else {
 
             Promise.all(responseArr)
               .then(responses => {
-                console.log(responses);               
                 res.json(responses)})
               .catch(err => res.json(err))  
           }
@@ -107,7 +103,7 @@ router.get('/search/:houseId', (req, res, next) => {
   const { dateStart, dateFinish } = req.query;
   
   if ((dateStart === undefined && dateFinish === undefined) || (dateStart === null && dateFinish === null) || (dateStart === '' && dateFinish === '')) {
-    Slots.find({ house: houseId })
+    Slots.find({ house: houseId }).populate('house')
     .then (allSlots => {res.json(allSlots)})
     .catch(err => res.json(err))
 
@@ -115,9 +111,8 @@ router.get('/search/:houseId', (req, res, next) => {
     let dateStartAdj = new Date(dateStart)
     let dateFinishAdj = new Date(dateFinish)
     
-    Slots.find({ house: houseId })
+    Slots.find({ house: houseId }).populate('house')
       .then (allSlots => {
-
         let slotsFilter = allSlots.filter(slot => {        
           let dateStartSlotAdj = new Date(slot.dateStart)
           let dateFinishSlotAdj = new Date(slot.dateFinish)
