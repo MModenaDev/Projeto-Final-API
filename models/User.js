@@ -17,7 +17,8 @@ const userSchema = new Schema({
   },
   google: {
     id: String
-  }
+  },
+  photoID: Array
 }, {
   timestamps: true
 });

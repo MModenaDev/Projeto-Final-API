@@ -125,23 +125,10 @@ router.get('/loggedin', (req, res, next) => {
  
 router.get('/facebook', passport.authenticate('facebook', {scope: ["email"]} ));
 
-router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: 'http://localhost:3000', failureRedirect: 'http://localhost:3000' }));
+router.get('/facebook/callback', passport.authenticate('facebook', { successRedirect: 'http://localhost:3000/signup', failureRedirect: 'http://localhost:3000' }));
 
 router.get('/google',passport.authenticate('google', {scope: ["profile", "email"]}));
 
-router.get('/google/callback', passport.authenticate('google',  { failureRedirect: 'http://localhost:3000' }, (req, res) => {
-  // save user in session
-  req.login(theUser, (err) => {
-    if (err) {
-      res.status(500).json({
-        message: 'Session save went bad.'
-      });
-      return;
-    }
-
-    // We are now logged in (that's why we can also send req.user)
-    res.status(200).json(theUser);
-  });
-}));
+router.get('/google/callback', passport.authenticate('google',  { successRedirect: 'http://localhost:3000/signup', failureRedirect: 'http://localhost:3000' }));
 
 module.exports = router;

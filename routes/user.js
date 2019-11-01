@@ -9,8 +9,8 @@ router.get("/", (req, res, next) => {
         .catch(err => res.json(err))        
 })
 
-router.post("/update", (req, res, next) => {
-    const { id } = req.user;
+router.put("/update", (req, res, next) => {
+    const { id } = req.body;
     User.findByIdAndUpdate(id, req.body)
         .then(user => res.json(user))
         .catch(err => res.json(err)) 
