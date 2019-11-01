@@ -63,7 +63,7 @@ app.locals.title = 'Final Project';
 
 app.use(cors({
   credentials: true,
-  origin: ['https://wander-ironhack.herokuapp.com'] // <== this will be the URL of our React app (it will be running on port 3000)
+  origin: ['https://https://projfinal-dev.netlify.com/'] // <== this will be the URL of our React app (it will be running on port 3000)
 }));
 
 app.use('/api/auth', require('./routes/auth'));
